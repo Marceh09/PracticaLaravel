@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('prueba.principal');
+});
+
+Route::get('empleados', function () {
+    $mensaje = '<h1>vista principal empleados</h1>';
+    return $mensaje;
 });
