@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('prueba.principal');
+    return view('welcome');
 });
 
-Route::get('empleados', function () {
-    $mensaje = '<h1>vista principal empleados</h1>';
-    return $mensaje;
-});
+//Rutas de Empleados:
+Route::get('empleados', [EmpleadosController::class, 'index'])->name('empleadoIndex');
+Route::get('empleados/crear', [EmpleadosController::class, 'crear'])->name('empleadoCrear');
+Route::get('empleados/mostrar', [EmpleadosController::class, 'mostrar'])->name('empleadoMostrar');
+Route::get('empleados/editar', [EmpleadosController::class, 'editar'])->name('empleadoEditar');
