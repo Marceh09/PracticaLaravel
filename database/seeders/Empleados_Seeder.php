@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Empleado;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,16 +16,17 @@ class Empleados_Seeder extends Seeder
      */
     public function run()
     {
-        $cargo = DB::table('cargos')->where(['nombre'=>'Instructor'])->value('id');
+    $cargo = DB::table('cargos')->where(['nombre'=>'Instructor'])->value('id');
 
-         DB::table('empleados')->insert([
+    Empleado::create([
         'nombre'=> 'Dony Cardenas',
         'email' => 'cardenasdonny@gmail.com',
         'direccion' => 'calle 123456',
         'edad' => 36,
         'idCargo' => $cargo
     ]);
-    DB::table('empleados')->insert([
+
+    Empleado::create([
         'nombre'=> 'Paula Andrade',
         'email' => 'paulaandrade@gmail.com',
         'direccion' => 'calle 13456',
@@ -32,7 +34,7 @@ class Empleados_Seeder extends Seeder
         'idCargo' => 3
     ]);
 
-    DB::table('empleados')->insert([
+    Empleado::create([
         'nombre'=> 'Camila Londoño',
         'email' => 'camilalondoño@gmail.com',
         'direccion' => 'calle 987654',
@@ -40,7 +42,7 @@ class Empleados_Seeder extends Seeder
         'idCargo' => 3
     ]);
 
-    DB::table('empleados')->insert([
+    Empleado::create([
         'nombre'=> 'Andrés Higuita',
         'email' => 'andruh@gmail.com',
         'direccion' => 'calle 456783',
