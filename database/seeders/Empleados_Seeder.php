@@ -50,6 +50,7 @@ class Empleados_Seeder extends Seeder
         'idCargo' => 2
     ]);
     
+    Empleado::factory()->times(50)->create();
 
     }
 }

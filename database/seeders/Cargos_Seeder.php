@@ -27,5 +27,7 @@ class Cargos_Seeder extends Seeder
         Cargo::create([
             'nombre'=> 'Coordinador',
         ]);
+        
+        Cargo::factory()->times(10)->create();
     }
 }
