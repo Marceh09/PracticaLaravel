@@ -17,18 +17,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Crear Empleado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>                        
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <form action="{{route('empleadoGuardar')}}" method="post">
                     <div class="modal-body">
                         @csrf
 
-                        @if($errors->any())
+                        <!-- @if($errors->any())
                             @foreach($errors->all() as $error)
                                 <p>{{$error}}</p>
                             @endforeach
-                        @endif
+                        @endif -->
 
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button type="submit"  class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
@@ -73,6 +73,14 @@
         </div>
     </div>
     <!-- FIN Modal CREAR EMPLEADO-->
+    <br>    
+
+    @if (session('mensaje'))
+        <div class="alert alert-success">
+            {{ session('mensaje') }}
+        </div>
+    @endif
+
     <br>
     <table class="table">
         <thead>
@@ -110,3 +118,12 @@
         {{ $empleados->links() }}
     </div>
 @endsection()
+@section('scripts')
+    @if($errors->any())
+    <script>
+        $(document).ready(function(){
+            $('#crearEmpleadoModal').modal('show')
+        })
+    </script>
+    @endif
+@endsection
