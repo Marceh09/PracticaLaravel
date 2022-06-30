@@ -94,9 +94,9 @@
                 <td>{{$empleado->email}}</td>
                 <td>{{$empleado->cargoEmpleado->nombre}}</td>
                 <td>
-                    <form action="#" method="post">
-                    <a href="#mostrarEmpleado{{$empleado->id}}" data-toggle="modal" data-target="#mostrarEmpleado{{$empleado->id}}"><i class="fas fa-info-circle fa-lg text-success"></i></a>
-                    <a href="#editarEmpleado{{$empleado->id}}" data-toggle="modal" data-target="#editarEmpleado{{$empleado->id}}" style="margin-left: 20px; margin-right: 20px;"><i class="fas fa-user-edit fa-lg"></i></a>
+                    <form action="{{route('empleadoEliminar', $empleado)}}" method="post" class="formulario-eliminar">
+                        <a href="#mostrarEmpleado{{$empleado->id}}" data-toggle="modal" data-target="#mostrarEmpleado{{$empleado->id}}"><i class="fas fa-info-circle fa-lg text-success"></i></a>
+                        <a href="#editarEmpleado{{$empleado->id}}" data-toggle="modal" data-target="#editarEmpleado{{$empleado->id}}" style="margin-left: 20px; margin-right: 20px;"><i class="fas fa-user-edit fa-lg"></i></a>
 
                         @csrf @method('DELETE')
                         <button type="submit " style="border: none"><i class="fas fa-trash-alt fa-lg text-danger"></i></button>
@@ -252,5 +252,38 @@
             $('#crearEmpleadoModal').modal('show')
         })
     </script>
+    @endif
+
+    <script>
+
+        $('.formulario-eliminar').submit(function(e){
+            e.preventDefault(); // previene que se haga el submit
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    
+                }
+            })
+        });    
+        
+    </script>
+
+    @if (session('mensaje')=="Empleado eliminado")
+        <script>
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        </script>
+        
     @endif
 @endsection

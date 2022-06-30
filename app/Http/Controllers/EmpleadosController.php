@@ -63,5 +63,12 @@ class EmpleadosController extends Controller
         $empleado->update($campos);
     
         return redirect('empleados')->with('mensaje', 'Empleado actualizado');
+        
+    }
+
+    public function eliminar(Empleado $empleado)
+    {
+        $empleado->delete();
+        return redirect('empleados')->with('mensaje', 'Empleado eliminado');
     }
 }
